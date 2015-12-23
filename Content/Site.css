@@ -1,0 +1,51 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #fff;
+}
+
+header {
+    background-color: white;
+    border: 1px solid black;
+}
+
+footer {
+    background-color: gray;
+    text-align: center;
+}
+
+body{
+    background-color: #e4d1d1;
+}
+
+.login_user {
+    float: right;
+    border: 1px solid #b6ff00;
+    width: auto;
+}
+
+#menu {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+#menu .menu-item{
+    border: 1px solid gray;
+    background-color: #ffd800;
+}
+
+#menu .menu-item:hover {
+    background-color: gray;
+    color: white;    
+}
+
+#Article_history_records {
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+}

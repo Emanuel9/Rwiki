@@ -1,0 +1,97 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true"
+CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head runat="server">
+    <meta charset ="utf-8" />
+    <title> Rwiki </title>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="Images/rwiki-logo.png" rel="shortcut icon" type="image/x-icon" />
+    <asp:ContentPlaceHolder id="HeadContent" runat="server"/>
+</head>
+<body>
+        <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=272931&clcid=0x409 --%>
+                <%--Framework scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="jquery.ui.combined" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+
+                <%--AngulaJS script--%>
+                
+
+                <%--Site scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        <header>
+            <div class="content-wrapper">
+                <div id="logo">
+                    <asp:HyperLink NavigateUrl="~/Default.aspx" runat="server"><asp:Image ImageUrl="~/Images/rwiki-logo.png" Height="120" Width="200" runat="server"/> </asp:HyperLink>
+                    
+                    <span> Nr useri activi pe site : <% =Application["nr_useri"].ToString() %></span>
+
+                    <% if (HttpContext.Current.Session["ID"] == null)
+                       { %>
+                    
+                    <nav class="login_user">
+                        <span><asp:HyperLink  NavigateUrl="~/Login.aspx" runat="server"> | Login |</asp:HyperLink> </span>
+                        <span><asp:HyperLink NavigateUrl="~/Register.aspx" runat="server"> Register| </asp:HyperLink> </span>
+                    </nav>
+
+                    <% } else { %>
+                         <nav class="login_user">
+                             <span><asp:Button Text="Profile" runat="server" ID="profile_button" OnClick="Button_profile"/></span>
+                             <span><asp:Button Text="Log out" runat="server" ID="log_out_button" OnClick="Button_log_out"/></span>
+                         </nav>   
+
+                    <% } %>
+                    
+                </div>
+                <div id="menu">
+                    <nav>
+                        <span class="menu-item"><asp:HyperLink NavigateUrl="~/Default.aspx" runat="server"> Home </asp:HyperLink></span>
+                        <span class="menu-item"><asp:HyperLink ID="HyperLink1" NavigateUrl="~/Articles/Categories/Art"  runat="server">Art</asp:HyperLink> </span>
+                        <span class="menu-item"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/Articles/Categories/History" runat="server">History </asp:HyperLink></span>
+                        <span class="menu-item"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/Articles/Categories/Science" runat="server"> Science </asp:HyperLink></span>
+                        <span class="menu-item"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/Articles/Categories/Geography" runat="server">Geography</asp:HyperLink></span>
+                    </nav>
+                </div>
+                    
+                <!-- <img src="Images/rwiki-logo.png" weight="200" height="200"/> -->
+            </div>
+        </header>
+        <div id="body">
+            <h3> Rwiki -- Romania wikipedia </h3>
+       <hr />
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                
+            </section>
+
+        </div>
+        <footer>
+            <p> &copy; <%: DateTime.Now.Year %> Rwiki</p>
+        </footer>
+    </form>
+</body>
+</html>
